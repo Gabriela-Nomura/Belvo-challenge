@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "93306944-ee74-4d2b-be9d-2c6e213927ce",
+		"name": "Belvo - QA chalenge",
+		"description": "**Belvo company -** chalenge for QA\n\nAPI: *It returns a sum of two integer numbers*\n\n*   Returns 0 when:\n    \n\nNegative number is inserted  \nA decimal number is inserted  \nA non numerical character is inserted\n\n*   Returns error when:\n    \n\nOne of the parameters is not inserted",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET (200) https://belvo-qa-challenge.herokuapp.com/sum?integer_1=1&integer_2=40",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Belvo interview testing ",
+							"// Author: Gabriela Nomura ",
+							"// Created on 05/12/2022",
+							"pm.test(\"Status test\", function() {",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"Body content\", function(){",
+							"    pm.response.to.not.be.error;",
+							"    pm.response.to.have.jsonBody({ result: '41' });",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://belvo-qa-challenge.herokuapp.com/sum?integer_1=1&integer_2=40",
+					"protocol": "https",
+					"host": [
+						"belvo-qa-challenge",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"sum"
+					],
+					"query": [
+						{
+							"key": "integer_1",
+							"value": "1"
+						},
+						{
+							"key": "integer_2",
+							"value": "40"
+						}
+					]
+				},
+				"description": "**GET** request with 2 integer numbers.  \n\nResult of sum in response body and status 200"
+			},
+			"response": []
+		},
+		{
+			"name": "GET (422) https://belvo-qa-challenge.herokuapp.com/sum?integer_1=1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Belvo interview testing ",
+							"// Author: Gabriela Nomura ",
+							"// Created on 05/12/2022",
+							"pm.test(\"Status test\", function() {",
+							"    pm.response.to.have.status(422)",
+							"});",
+							"",
+							"pm.test(\"Body content\", function(){",
+							"    pm.response.to.have.error;",
+							"    pm.response.to.have.jsonBody({type: 'field required'})",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://belvo-qa-challenge.herokuapp.com/sum?integer_1=1",
+					"protocol": "https",
+					"host": [
+						"belvo-qa-challenge",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"sum"
+					],
+					"query": [
+						{
+							"key": "integer_1",
+							"value": "1"
+						}
+					]
+				},
+				"description": "**GET** request with only one of 2 required parameters.  \n\nError body message, status response 422"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
